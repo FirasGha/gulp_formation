@@ -1,1 +1,1 @@
-{"version":3,"sources":["core.css"],"names":[],"mappings":"AAAA","file":"style.min.css","sourcesContent":[]}
+{"version":3,"sources":["_mixin.scss"],"names":[],"mappings":"AAAA,GACI,MAAA","file":"style.min.css","sourcesContent":["h1 {\r\n    color: red;\r\n}"]}
