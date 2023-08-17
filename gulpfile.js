@@ -98,17 +98,19 @@ gulp.task('serve', () => {
 
 gulp.task('watch', () => {
     const watchImages = [
-        src_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)'
+        src_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)',
+        src_folder + 'icons/**/*.+(png|jpg|jpeg|gif|svg|ico)'
     ];
 
     const watch = [
-        src_folder + '*.njk',
+        src_folder + 'views/**/*.njk',
         src_folder + 'scss/**/*.scss',
-        src_folder + 'js/**/*.ts'
+        src_folder + 'js/*.ts'
     ];
 
     gulp.watch(watch, gulp.series('dev')).on('change', browserSync.reload);
-    gulp.watch(watchImages, gulp.series('images')).on('change', browserSync.reload);
+    gulp.watch(watchImages, gulp.series('images', 'icons')).on('change', browserSync.reload);
+
 });
 
 gulp.task('deploy', function () {
@@ -119,5 +121,5 @@ gulp.task('deploy', function () {
         }))
 });
 gulp.task('build', gulp.series('njk-html', 'sass', 'js', 'images', 'fonts'));
-gulp.task('dev', gulp.series('clear', 'njk-html', 'sass', 'js', 'images', 'icons', 'fonts', 'serve', 'watch'));
+gulp.task('dev', gulp.series('clear', 'njk-html', 'sass', 'js', 'images', 'icons', 'fonts', 'serve'));
 gulp.task('default', gulp.series('build', gulp.parallel('serve', 'watch')));
